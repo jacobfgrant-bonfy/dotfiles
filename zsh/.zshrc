@@ -7,6 +7,21 @@
 
 
 
+# AWS CLI Autocomplete
+
+if (( $+commands[brew] && $+commands[aws] ))
+then
+    AWS_ZSH_COMPLETER="$(brew --prefix)/share/zsh/site-functions/aws_zsh_completer.sh"
+
+    if [[ -f "/opt/homebrew/share/zsh/site-functions/aws_zsh_completer.sh" ]]
+    then
+        autoload -Uz compinit
+        compinit
+        source "$AWS_ZSH_COMPLETER"
+    fi
+fi
+
+
 # Terragrunt Autocomplete
 
 if command -v terragrunt >/dev/null 2>&1
