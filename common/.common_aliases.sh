@@ -38,7 +38,7 @@ fi
 
 
 # Git shortcuts
-alias gogit="cd $HOME/Documents/Git/ && ls"
+alias gogit="cd $HOME/Developer/ && ls"
 alias gpo="git push origin"
 alias gum="git checkout master && git pull upstream master"
 
