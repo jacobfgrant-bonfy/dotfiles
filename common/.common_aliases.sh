@@ -43,8 +43,12 @@ fi
 
 
 
+# Directory shortcuts
+alias cdev="cd $HOME/Developer/"
+alias gogit="cd $HOME/Developer/bonfy_repos && ls"
+
+
 # Git shortcuts
-alias gogit="cd $HOME/Developer/ && ls"
 alias gpo="git push origin"
 alias gum="git checkout master && git pull upstream master"
 
