@@ -35,6 +35,12 @@ then
     alias open='xdg-open'
 fi
 
+# Open VSC with 'code'
+if [ -d "/Applications/Visual Studio Code.app" ] && ! command -v code >/dev/null
+then
+    alias code='open -a "/Applications/Visual Studio Code.app"'
+fi
+
 
 
 # Git shortcuts
