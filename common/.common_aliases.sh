@@ -44,7 +44,12 @@ fi
 
 
 # Directory shortcuts
-alias cdev="cd $HOME/Developer/"
+alias cdes="cd $HOME/Desktop"
+alias cdev="cd $HOME/Developer"
+alias cdoc="cd $HOME/Documents"
+alias cdot="cd $HOME/.dotfiles"
+alias cdow="cd $HOME/Downloads"
+
 alias gogit="cd $HOME/Developer/bonfy_repos && ls"
 
 
