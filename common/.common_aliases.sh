@@ -24,6 +24,13 @@ fi
 
 
 
+### Enviromental Variables ###
+
+export GIT_DIR="$HOME/Developer/bonfy_repos"
+export LOCAL_MODELS_DIR="$HOME/Developer/data/models"
+
+
+
 ### Aliases ###
 
 # General Aliases
@@ -50,7 +57,7 @@ alias cdoc="cd $HOME/Documents"
 alias cdot="cd $HOME/.dotfiles"
 alias cdow="cd $HOME/Downloads"
 
-alias gogit="cd $HOME/Developer/bonfy_repos && ls"
+alias gogit="cd $GIT_DIR && ls"
 
 
 # Git shortcuts
