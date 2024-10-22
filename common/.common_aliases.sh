@@ -183,3 +183,55 @@ alias tfdoct="terraform-docs toml"
 alias tfdocv="terraform-docs tfvars"
 alias tfdocx="terraform-docs xml"
 alias tfdocy="terraform-docs yaml"
+
+
+
+### Bonfy Functions
+
+#### act Function – wraps act for running GitHub Actions locally
+
+function act() {
+
+    # Branch local gh-actions is on
+    DEV_BRANCH=$(cd "$BONFY_GIT_DIR/gh-actions" && git rev-parse --abbrev-ref HEAD)
+
+    # Mongo user/password (keep in sync with repo's config/default.env
+    MONGODB_USER=root
+    MONGODB_PASSWORD=root
+
+    # Fetch current CodeArtifact token and ECR login (every time since they expire)
+    CODEARTIFACT_AUTH_TOKEN=$(aws codeartifact get-authorization-token \
+        --domain bonfy \
+        --domain-owner 211125345717 \
+        --query authorizationToken \
+        --output text \
+        --profile cicd \
+        --region us-west-2
+    )
+    ECR_LOGIN_PASSWORD=$(aws ecr get-login-password --region us-west-2 --profile cicd)
+
+    # Set ACT_ENV to cicd-dev unless ENV in environment
+    ACT_ENV=${ACT_ENV:-cicd-dev}
+
+    /opt/homebrew/bin/act \
+        --container-architecture linux/arm64 \
+        --secret GITHUB_TOKEN="$(gh auth token)" \
+        --local-repository "https://github.com/Bonfy-AI/gh-actions@main=$BONFY_GIT_DIR/gh-actions" \
+        --local-repository "https://github.com/Bonfy-AI/gh-actions@$DEV_BRANCH=$BONFY_GIT_DIR/gh-actions" \
+        --platform ubuntu-latest=bonfy-act-runner \
+        --platform self-hosted-amd64=bonfy-act-runner \
+        --platform self-hosted-amd64-models=bonfy-act-runner \
+        --platform self-hosted-arm64=bonfy-act-runner \
+        --platform self-hosted-arm64-models=bonfy-act-runner \
+        --pull=false \
+        --env-file <(aws configure export-credentials --format env) \
+        --env CODEARTIFACT_AUTH_TOKEN="$CODEARTIFACT_AUTH_TOKEN" \
+        --env ECR_LOGIN_PASSWORD="$ECR_LOGIN_PASSWORD" \
+        --env USING_ACT="true" \
+        --env ENV="$ACT_ENV" \
+        --env FORCE="$FORCE" \
+        --secret MONGODB_USER="$MONGODB_USER" --secret MONGODB_PASSWORD="$MONGODB_PASSWORD" \
+        --container-options "-v $LOCAL_MODELS_DIR:$LOCAL_MODELS_DIR" \
+        --env EFS="$LOCAL_MODELS_DIR" \
+        "$@"
+}
