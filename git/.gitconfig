@@ -79,7 +79,7 @@
 
     # checkout
     co = checkout                   # checkout branch/commit
-    com = checkout master --        # checkout master branch
+    com = checkout main --          # checkout main branch
     cod = checkout dev --           # checkout dev branch
     cob = checkout -b               # checkout new branch
     cop = checkout --patch HEAD --  # discard/restore changes by patch
@@ -131,7 +131,7 @@
     # interactive rebase
     ri = rebase --interactive                               # interactive rebase
     riu = rebase --interactive @{u}                         # interactive rebase of the current branch's commits ahead of the upstream counterpart
-    rim = rebase --interactive master                       # interactive rebase of the current branch's commits ahead of the master branch
+    rim = rebase --interactive main                         # interactive rebase of the current branch's commits ahead of the main branch
     rid = rebase --interactive dev                          # interactive rebase of the current branch's commits ahead of the dev branch
     rih = "!f() { git rebase --interactive HEAD~${1}; }; f" # interactive rebase of the last given number of commits from the HEAD
 
