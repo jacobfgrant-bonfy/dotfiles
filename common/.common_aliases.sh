@@ -155,3 +155,9 @@ alias tfw="terraform workspace"
 ## Terragrunt Aliases
 
 alias tg="terragrunt"
+
+
+## Terrascan Aliases
+
+alias ts="terrascan"
+alias tss="terrascan scan --iac-type terraform"
