@@ -161,3 +161,9 @@ alias tg="terragrunt"
 
 alias ts="terrascan"
 alias tss="terrascan scan --iac-type terraform"
+
+
+## TFLint Aliases
+
+alias tfl="tflint"
+alias tfli="tflint --init"
