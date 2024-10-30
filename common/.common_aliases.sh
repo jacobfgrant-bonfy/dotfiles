@@ -148,6 +148,7 @@ alias tfp="terraform plan"
 alias tfa="terraform apply"
 alias tfd="terraform destroy"
 alias tff="terraform fmt"
+alias tfg="terraform get"
 alias tfs="terraform state"
 alias tfw="terraform workspace"
 
