@@ -168,3 +168,16 @@ alias tss="terrascan scan --iac-type terraform"
 
 alias tfl="tflint"
 alias tfli="tflint --init"
+
+
+## terraform-docs Aliases
+
+alias tfdoc="terraform-docs"
+alias tfdoca="terraform-docs asciidoc"
+alias tfdocj="terraform-docs json"
+alias tfdocm="terraform-docs markdown"
+alias tfdocp="terraform-docs pretty"
+alias tfdoct="terraform-docs toml"
+alias tfdocv="terraform-docs tfvars"
+alias tfdocx="terraform-docs xml"
+alias tfdocy="terraform-docs yaml"
