@@ -37,6 +37,8 @@ export LOCAL_MODELS_DIR="$HOME/Developer/data/models"
 
 alias celar="clear"
 
+alias cls="clear && ls"
+
 if command -v xdg-open >/dev/null 2>&1
 then
     alias open='xdg-open'
