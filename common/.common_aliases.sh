@@ -145,12 +145,16 @@ venv() {
 
 alias tf="terraform"
 alias tfi="terraform init"
+alias tfiu="terraform init -upgrade"
 alias tfv="terraform validate"
 alias tfp="terraform plan"
 alias tfa="terraform apply"
 alias tfd="terraform destroy"
+alias tfc="terraform console"
 alias tff="terraform fmt"
 alias tfg="terraform get"
+alias tfm="terraform modules"
+alias tfo="terraform output"
 alias tfs="terraform state"
 alias tfw="terraform workspace"
 
