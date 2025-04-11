@@ -67,6 +67,11 @@ alias gpo="git push origin"
 alias gum="git checkout master && git pull upstream master"
 
 
+# find/grep shortcuts
+alias pfind='find . -type f -name "*.py" | xargs -n 1 grep'
+alias tfind='find . -type f -name "*.tf" | xargs -n 1 grep'
+
+
 
 ## Python aliases/functions
 
