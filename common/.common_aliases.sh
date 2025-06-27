@@ -23,6 +23,14 @@ then
 fi
 
 
+# GOPATH
+export GOPATH="$HOME/Developer/go"
+if [ -d "$GOPATH/bin" ]
+then
+  export PATH="$GOPATH/bin:$PATH"
+fi
+
+
 
 ### Enviromental Variables ###
 
