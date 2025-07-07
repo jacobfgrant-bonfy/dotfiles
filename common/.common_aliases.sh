@@ -47,6 +47,8 @@ alias celar="clear"
 
 alias cls="clear && ls"
 
+
+# Open files with 'open'
 if command -v xdg-open >/dev/null 2>&1
 then
     alias open='xdg-open'
@@ -78,6 +80,33 @@ alias gum="git checkout master && git pull upstream master"
 # find/grep shortcuts
 alias pfind='find . -type f -name "*.py" | xargs -n 1 grep'
 alias tfind='find . -type f -name "*.tf" | xargs -n 1 grep'
+
+
+# Get public key
+pubkey() {
+  local keyfile="${1:-id_ed25519.pub}"
+
+  # Append .pub if not present
+  case "$keyfile" in
+    *.pub) ;;
+    *) keyfile="$keyfile.pub" ;;
+  esac
+
+  local fullpath="$HOME/.ssh/$keyfile"
+
+  if [ ! -f "$fullpath" ]
+  then
+    echo "Key not found: $fullpath" >&2
+    return 1
+  fi
+
+  if command -v pbcopy >/dev/null 2>&1
+  then
+    tee >(pbcopy) < "$fullpath"
+  else
+    cat "$fullpath"
+  fi
+}
 
 
 
