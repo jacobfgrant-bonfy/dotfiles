@@ -1,6 +1,6 @@
 [user]
     email = jacob.grant@bonfy.ai
-    name = Jacob F. Grant
+    name = jacobfgrant-bonfy
 
 [credential]
     helper = cache --timeout=3600
@@ -45,6 +45,7 @@
 
     # inspection
     sh = show --stat --cc --summary --patch # show detailed info about commit
+    shs = show --stat --summary             # show summary info about commit
     grep = grep -I                          # grep within tracked files in repo
 
     # diff
@@ -161,3 +162,8 @@
     # show authors and and commit counts
     #    git thanks [<git-log-args>...]
     thanks = "!f() { git log --pretty=tformat:'%aN <%aE>' \"$@\" | sort | uniq -c | sort -rn; }; f"
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
