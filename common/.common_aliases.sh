@@ -1,11 +1,34 @@
 ### Common Shell Aliases ###
 #
-#
 # Common aliases across shells (bash, zsh, etc.)
 #
+# Table of Contents:
+#   - ENVIRONMENT
+#   - TOOLS & SERVICES  
+#   - CORE ALIASES
+#   - PACKAGE MANAGERS
+#   - DEVELOPMENT TOOLS
+#   - UTILITIES
+#   - BONFY FUNCTIONS
+#
 
 
-### PATH Variable ###
+## ENVIRONMENT ##
+
+# Environment Variables #
+
+export BONFY_GIT_DIR="$HOME/Developer/bonfy_repos"
+export LOCAL_MODELS_DIR="$HOME/Developer/data/models"
+
+
+# PATH Extensions #
+
+# /usr/local/go/bin
+if [ -d "/usr/local/go/bin" ]
+then
+    export PATH="$PATH:/usr/local/go/bin"
+fi
+
 
 # ~/.local/bin
 if [ -d "$HOME/.local/bin" ]
@@ -23,36 +46,60 @@ then
 fi
 
 
-# GOPATH
-export GOPATH="$HOME/Developer/go"
-if [ -d "$GOPATH/bin" ]
+# Go Configuration #
+
+if [ -d "$HOME/Developer" ]
 then
-  export PATH="$GOPATH/bin:$PATH"
+    export GOPATH="$HOME/Developer/go"
+else
+    export GOPATH="$HOME/.go"
 fi
 
 
-
-### Enviromental Variables ###
-
-export BONFY_GIT_DIR="$HOME/Developer/bonfy_repos"
-export LOCAL_MODELS_DIR="$HOME/Developer/data/models"
+## TOOLS & SERVICES ##
 
 
+## CORE ALIASES ##
 
-### Aliases ###
-
-# General Aliases
+# System & Navigation #
 
 alias celar="clear"
+alias cls="clear && ls -CF"
 
-alias cls="clear && ls"
+
+alias h="history"
+alias hg="history | grep"
 
 
-# Open files with 'open'
+# ls with color
+if command -v ls >/dev/null 2>&1
+then
+    if ls --color=auto >/dev/null 2>&1
+    then
+        alias ls="ls --color=auto"
+    fi
+fi
+
+
+# ls
+alias l="ls -CF"
+alias la="ls -aCF"
+alias ll="ls -lhF"
+alias lla="ls -lahF"
+
+
+# Grep with color
+alias grep="grep --color=auto"
+alias fgrep="fgrep --color=auto"
+alias egrep="egrep --color=auto"
+
+
+# Make "open" portable
 if command -v xdg-open >/dev/null 2>&1
 then
     alias open='xdg-open'
 fi
+
 
 # Open VSC with 'code'
 if [ -d "/Applications/Visual Studio Code.app" ] && ! command -v code >/dev/null
@@ -61,8 +108,8 @@ then
 fi
 
 
+# Directory Navigation #
 
-# Directory shortcuts
 alias cdes="cd $HOME/Desktop"
 alias cdev="cd $HOME/Developer"
 alias cdoc="cd $HOME/Documents"
@@ -72,51 +119,49 @@ alias cdow="cd $HOME/Downloads"
 alias gogit="cd $BONFY_GIT_DIR && ls"
 
 
-# Git shortcuts
+# Git #
+
 alias gpo="git push origin"
 alias gum="git checkout master && git pull upstream master"
 
 
-# find/grep shortcuts
-alias pfind='find . -type f -name "*.py" | xargs -n 1 grep'
-alias tfind='find . -type f -name "*.tf" | xargs -n 1 grep'
+## PACKAGE MANAGERS ##
+
+# Homebrew #
+
+if command -v brew >/dev/null 2>&1
+then
+    alias brewup="brew update && brew upgrade"
+    alias brewc="brew cleanup"
+fi
 
 
-# Get public key
-pubkey() {
-  local keyfile="${1:-id_ed25519.pub}"
+# APT #
 
-  # Append .pub if not present
-  case "$keyfile" in
-    *.pub) ;;
-    *) keyfile="$keyfile.pub" ;;
-  esac
-
-  local fullpath="$HOME/.ssh/$keyfile"
-
-  if [ ! -f "$fullpath" ]
-  then
-    echo "Key not found: $fullpath" >&2
-    return 1
-  fi
-
-  if command -v pbcopy >/dev/null 2>&1
-  then
-    tee >(pbcopy) < "$fullpath"
-  else
-    cat "$fullpath"
-  fi
-}
+if command -v apt-get >/dev/null 2>&1
+then
+    alias aptup="sudo apt-get update && sudo apt-get upgrade"
+    alias aptupd="sudo apt-get update && sudo apt-get dist-upgrade"
+    alias apti="sudo apt-get install"
+    alias aptui="sudo apt-get remove"
+    alias aptuia="sudo apt-get purge"
+    alias aptrm="sudo apt-get autoremove"
+    alias aptcl="sudo apt-get autoclean"
+    alias apts="apt-cache search"
+    alias aptsh="apt-cache show"
+fi
 
 
+## DEVELOPMENT TOOLS ##
 
-## Python aliases/functions
+# Python #
 
 # python -> python3
 if ! command -v python &> /dev/null
 then
     alias python="python3"
 fi
+
 
 # pip -> pip3
 if ! command -v pip &> /dev/null
@@ -125,8 +170,7 @@ then
 fi
 
 
-# venv Function
-
+# venv
 venv() {
     local python_interpreter=python3
     local env_name
@@ -183,59 +227,141 @@ venv() {
 }
 
 
-## Terraform Aliases
+# Terraform #
 
-alias tf="terraform"
-alias tfi="terraform init"
-alias tfiu="terraform init -upgrade"
-alias tfv="terraform validate"
-alias tfp="terraform plan"
-alias tfa="terraform apply"
-alias tfd="terraform destroy"
-alias tfc="terraform console"
-alias tff="terraform fmt"
-alias tfg="terraform get"
-alias tfm="terraform modules"
-alias tfo="terraform output"
-alias tfs="terraform state"
-alias tfw="terraform workspace"
-
-
-## Terragrunt Aliases
-
-alias tg="terragrunt"
+if command -v terraform &> /dev/null
+then
+    alias tf="terraform"
+    alias tfi="terraform init"
+    alias tfiu="terraform init -upgrade"
+    alias tfv="terraform validate"
+    alias tfp="terraform plan"
+    alias tfa="terraform apply"
+    alias tfd="terraform destroy"
+    alias tfc="terraform console"
+    alias tff="terraform fmt"
+    alias tfg="terraform get"
+    alias tfm="terraform modules"
+    alias tfo="terraform output"
+    alias tfs="terraform state"
+    alias tfw="terraform workspace"
+fi
 
 
-## Terrascan Aliases
+# Terragrunt #
 
-alias ts="terrascan"
-alias tss="terrascan scan --iac-type terraform"
-
-
-## TFLint Aliases
-
-alias tfl="tflint"
-alias tfli="tflint --init"
+if command -v terragrunt &> /dev/null
+then
+    alias tg="terragrunt"
+fi
 
 
-## terraform-docs Aliases
+# Terrascan #
 
-alias tfdoc="terraform-docs"
-alias tfdoca="terraform-docs asciidoc"
-alias tfdocj="terraform-docs json"
-alias tfdocm="terraform-docs markdown"
-alias tfdocp="terraform-docs pretty"
-alias tfdoct="terraform-docs toml"
-alias tfdocv="terraform-docs tfvars"
-alias tfdocx="terraform-docs xml"
-alias tfdocy="terraform-docs yaml"
+if command -v terrascan &> /dev/null
+then
+    alias ts="terrascan"
+    alias tss="terrascan scan -iac-type terraform"
+fi
 
 
+# Terraform Lint #
 
-### Bonfy Functions
+if command -v tflint &> /dev/null
+then
+    alias tfl="tflint"
+    alias tfli="tflint -init"
+fi
 
-#### act Function – wraps act for running GitHub Actions locally
 
+# Terraform Docs #
+
+if command -v terraform-docs &> /dev/null
+then
+    alias tfdoc="terraform-docs"
+    alias tfdoca="terraform-docs asciidoc"
+    alias tfdocj="terraform-docs json"
+    alias tfdocm="terraform-docs markdown"
+    alias tfdocp="terraform-docs pretty"
+    alias tfdoct="terraform-docs toml"
+    alias tfdocv="terraform-docs tfvars"
+    alias tfdocx="terraform-docs xml"
+    alias tfdocy="terraform-docs yaml"
+fi
+
+
+# System Administration #
+
+# Allows using sudo with other aliases
+alias sudo='sudo '
+
+
+# systemd (systemctl)
+if command -v systemctl > /dev/null 2>&1
+then
+    alias sstatus="systemctl status"
+    alias sstart="sudo systemctl start"
+    alias sstop="sudo systemctl stop"
+    alias srestart="sudo systemctl restart"
+    alias sreload="sudo systemctl reload"
+    alias senable="sudo systemctl enable"
+    alias sdisable="sudo systemctl disable"
+    alias smask="sudo systemctl mask"
+    alias sunmask="sudo systemctl unmask"
+fi
+
+
+## UTILITIES ##
+
+## Searching Files #
+
+# find/grep shortcuts
+alias pfind='find . -type f -name "*.py" | xargs -n 1 grep'
+alias tfind='find . -type f -name "*.tf" | xargs -n 1 grep'
+
+
+# Archives (tar) #
+
+alias mktar="tar -cvf"
+alias untar="tar -xvf"
+alias mkgz="tar -czvf" 
+alias ungz="tar -xzvf"
+
+
+# SSH #
+
+# Get SSH public key
+pubkey() {
+    local keyfile="${1:-id_ed25519.pub}"
+
+    # Append .pub if not present
+    case "$pubkeyfile" in
+        *.pub) ;;
+        *) pubkeyfile="$pubkeyfile.pub" ;;
+    esac
+
+    local fullpath="$HOME/.ssh/$pubkeyfile"
+
+    if [ ! -f "$fullpath" ]
+    then
+        echo "Key not found: $fullpath" >&2
+        return 1
+    fi
+
+    if command -v pbcopy >/dev/null 2>&1
+    then
+        tee >(pbcopy) < "$fullpath"
+    else
+        cat "$fullpath"
+    fi
+}
+
+
+## Bonfy Functions ##
+
+# act #
+
+#act Function – wraps act for running GitHub Actions locally #
 function act() {
 
     # Branch local gh-actions is on
