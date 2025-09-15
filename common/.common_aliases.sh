@@ -21,6 +21,14 @@ export BONFY_GIT_DIR="$HOME/Developer/bonfy_repos"
 export LOCAL_MODELS_DIR="$HOME/Developer/data/models"
 
 
+# Credentials #
+
+if [ -f "$HOME/.credentials" ]
+then
+    source "$HOME/.credentials"
+fi
+
+
 # PATH Extensions #
 
 # /usr/local/go/bin
