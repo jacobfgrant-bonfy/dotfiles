@@ -251,6 +251,10 @@ then
     alias tfg="terraform get"
     alias tfm="terraform modules"
     alias tfo="terraform output"
+    alias tfpr="terraform providers"
+    alias tfq="terraform query"
+    alias tfr="terraform refresh"
+    alias tfsh="terraform show"
     alias tfs="terraform state"
     alias tfw="terraform workspace"
 fi
