@@ -122,7 +122,7 @@ alias gogit="cd $BONFY_GIT_DIR && ls"
 # Git #
 
 alias gpo="git push origin"
-alias gum="git checkout master && git pull upstream master"
+alias gum="git checkout main && git pull upstream main"
 
 
 ## PACKAGE MANAGERS ##
