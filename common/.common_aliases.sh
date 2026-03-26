@@ -339,12 +339,12 @@ pubkey() {
     local keyfile="${1:-id_ed25519.pub}"
 
     # Append .pub if not present
-    case "$pubkeyfile" in
+    case "$keyfile" in
         *.pub) ;;
-        *) pubkeyfile="$pubkeyfile.pub" ;;
+        *) keyfile="$keyfile.pub" ;;
     esac
 
-    local fullpath="$HOME/.ssh/$pubkeyfile"
+    local fullpath="$HOME/.ssh/$keyfile"
 
     if [ ! -f "$fullpath" ]
     then
