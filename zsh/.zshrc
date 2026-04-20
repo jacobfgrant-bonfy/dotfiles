@@ -15,19 +15,24 @@
 
 ## TOOL COMPLETION ##
 
+autoload -Uz compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
+
+
 # AWS CLI #
 
-if (( $+commands[brew] && $+commands[aws] ))
+# Pkg install
+if _aws_completer="$(command -v aws_completer 2>/dev/null)"
 then
-    AWS_ZSH_COMPLETER="$(brew --prefix)/share/zsh/site-functions/aws_zsh_completer.sh"
+    complete -C "$_aws_completer" aws
 
-    if [[ -f "$AWS_ZSH_COMPLETER" ]]
-    then
-        autoload -Uz compinit
-        compinit
-        source "$AWS_ZSH_COMPLETER"
-    fi
+# Homebrew
+elif command -v brew >/dev/null 2>&1
+then
+    _aws_completer="$(brew --prefix)/share/zsh/site-functions/aws_zsh_completer.sh"
+    [[ -f "$_aws_completer" ]] && source "$_aws_completer"
 fi
+unset _aws_completer
 
 
 # Google Cloud CLI #
@@ -46,7 +51,6 @@ fi
 
 if command -v terragrunt >/dev/null 2>&1
 then
-    autoload -U +X bashcompinit && bashcompinit
     complete -C "$(command -v terragrunt)" terragrunt
 fi
 
