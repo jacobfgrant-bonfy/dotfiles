@@ -208,7 +208,7 @@ override.tf.json
 
 
 # Docker
-.dockerignore
+# .dockerignore
 
 
 # Kubernetes
@@ -245,7 +245,7 @@ out/
 .settings
 .springBeans
 .sts4-cache
-bin/
+#bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
 
