@@ -23,10 +23,25 @@ export LOCAL_MODELS_DIR="$HOME/Developer/data/models"
 
 # Credentials #
 
-if [ -f "$HOME/.credentials" ]
-then
-    source "$HOME/.credentials"
-fi
+creds() {
+    case "$1" in
+        cloudflare)
+            export CLOUDFLARE_API_KEY=$(security find-generic-password -s "cloudflare-api-key" -w)
+            export CLOUDFLARE_EMAIL="jacob.grant@bonfy.ai"
+            ;;
+        newrelic)
+            export NEW_RELIC_ACCOUNT_ID="4529082"
+            export NEW_RELIC_API_KEY=$(security find-generic-password -s "newrelic-api-key" -w)
+            ;;
+        ""|--list)
+            echo "Available: cloudflare, newrelic"
+            ;;
+        *)
+            echo "Unknown credential set: $1"
+            return 1
+            ;;
+    esac
+}
 
 
 # PATH Extensions #
