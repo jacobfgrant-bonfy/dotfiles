@@ -21,6 +21,14 @@ export BONFY_GIT_DIR="$HOME/Developer/bonfy_repos"
 export LOCAL_MODELS_DIR="$HOME/Developer/data/models"
 
 
+# GitHub CLI (read-only token by default) #
+
+if command -v gh >/dev/null 2>&1
+then
+    export GH_TOKEN=$(security find-generic-password -s "github-ro-token" -w 2>/dev/null)
+fi
+
+
 # Credentials #
 
 creds() {
@@ -29,12 +37,15 @@ creds() {
             export CLOUDFLARE_API_KEY=$(security find-generic-password -s "cloudflare-api-key" -w)
             export CLOUDFLARE_EMAIL="jacob.grant@bonfy.ai"
             ;;
+        github)
+            export GH_TOKEN=$(security find-generic-password -s "github-rw-token" -w)
+            ;;
         newrelic)
             export NEW_RELIC_ACCOUNT_ID="4529082"
             export NEW_RELIC_API_KEY=$(security find-generic-password -s "newrelic-api-key" -w)
             ;;
         ""|--list)
-            echo "Available: cloudflare, newrelic"
+            echo "Available: cloudflare, github, newrelic"
             ;;
         *)
             echo "Unknown credential set: $1"
