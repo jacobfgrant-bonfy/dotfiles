@@ -12,6 +12,8 @@
 
 [ -f ~/.common_aliases.sh ] && . ~/.common_aliases.sh
 
+[[ -d "$HOME/.zsh/completion" ]] && fpath=($HOME/.zsh/completion $fpath)
+
 
 ## TOOL COMPLETION ##
 
