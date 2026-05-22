@@ -33,6 +33,10 @@ fi
 
 creds() {
     case "$1" in
+        atlassian)
+            export ATLASSIAN_API_KEY=$(security find-generic-password -s "atlassian-api-key" -w)
+            export ATLASSIAN_EMAIL="jacob.grant@bonfy.ai"
+            ;;
         cloudflare)
             export CLOUDFLARE_API_KEY=$(security find-generic-password -s "cloudflare-api-key" -w)
             export CLOUDFLARE_EMAIL="jacob.grant@bonfy.ai"
