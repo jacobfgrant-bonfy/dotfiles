@@ -59,6 +59,22 @@ creds() {
 }
 
 
+# CodeArtifact/Poetry Auth #
+
+poetry-auth() {
+    local token
+    token=$(aws codeartifact get-authorization-token \
+        --domain bonfy \
+        --domain-owner 211125345717 \
+        --region us-west-2 \
+        --profile cicd \
+        --query authorizationToken \
+        --output text) || return 1
+    poetry config http-basic.aws aws "$token"
+    echo "Poetry CodeArtifact auth configured."
+}
+
+
 # PATH Extensions #
 
 # /usr/local/go/bin
