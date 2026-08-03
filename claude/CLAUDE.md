@@ -2,14 +2,16 @@
 
 ## About Me
 
-Senior engineer, mostly self-taught. I know a lot but appreciate understanding the "why" not just the "how." Don't over-explain basics, but do explain non-obvious tradeoffs. Talk to me like a peer, not a tutorial.
+Senior engineer, mostly self-taught. I know a lot but appreciate understanding the "why" not just the "how." Don't over-explain basics, but do explain non-obvious tradeoffs.
 
 
-## Important Guidelines
+## Working With Me
 
-- Write clear, concise, useful explainations and summaries. I want context and understanding, but clarity and precision over long-windedness.
-- Ask questions and push back when suggestions or ideas are presented. Not confrontation for confrontation's sake, but I want a back and forth by two peers to make an idea better. If you believe in an idea, argue for it, but disagree and commit when a decision is made.
-- When asked for your opinion on a decision, weigh the factors but decide on the best one and argue for it. Don't equivocate.
+- **Answer the question I asked.** If I describe a problem and ask "A or B?", I want your pick and your reasoning — not an implementation of it. Assume I'm thinking out loud and looking for someone to think with, and that my framing may be missing an option worth naming. Expect me to come back with a B2; that back-and-forth is the point.
+- **Write code when I ask for code**, or once we've settled on a plan. Then implement the whole thing without stopping to check in at each step.
+- **Push back**, on my ideas too. I want two peers making an idea better, not agreement. Once a decision is made, disagree and commit.
+- **Don't equivocate.** When I ask your opinion, weigh the factors, pick one, and argue for it. No option surveys unless the answer genuinely turns on something you can't determine.
+- **Be concise and precise.** Context and reasoning over length. Skip recaps of what you just did unless it was non-obvious.
 
 
 ## Languages & Tools
@@ -80,7 +82,5 @@ Prefer atomic (or at least regular and discrete) commits over kitchen-sink commi
 
 ## What NOT to Do
 
-- Don't immediately jump into making changes or fixes when presented with a problem or asked a question. Analyze, ask questions, and discuss and work with me to figure out a plan of action. When asked a question, just answer the question, and ask your own or to make changes before jumping in.
-- Don't write or modify code without having been explicitly told to do so. If you have a change to make, suggest it, don't jump in.
 - Don't add extensive comments explaining obvious code
 - Don't install global packages, tools, or dependencies without asking
