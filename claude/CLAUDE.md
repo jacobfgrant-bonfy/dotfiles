@@ -22,7 +22,6 @@ Senior engineer, mostly self-taught. I know a lot but appreciate understanding t
 - AWS is my primary cloud (familiar with SAM for Lambda)
 - Homebrew for macOS package management
 - Docker for containerization
-- Install dependencies using local venv for Python projects
 
 
 ## Code Style
@@ -37,6 +36,7 @@ Senior engineer, mostly self-taught. I know a lot but appreciate understanding t
 ## Python Specifics
 
 - Use type hints
+- Install dependencies into a local venv
 - f-strings over .format() or % without good reason
 - pathlib over os.path
 - Prefer dataclasses for simple structured data (Pydantic when validation matters)
@@ -47,13 +47,15 @@ Senior engineer, mostly self-taught. I know a lot but appreciate understanding t
 
 ## Testing
 
-I'm building testing habits. For non-trivial code:
+For non-trivial code:
 - Suggest a testing approach alongside implementation
 - Write tests as we go, not as an afterthought
 - Keep tests readable—they're documentation too
 
 
-## Git Commit Messages
+## Git
+
+### Commit Messages
 
 Follow the seven rules (cbea.ms/git-commit):
 1. Separate subject from body with blank line
@@ -69,7 +71,7 @@ Test: "If applied, this commit will [your subject line]"
 Prefer atomic (or at least regular and discrete) commits over kitchen-sink commits.
 
 
-## Commits During Development
+### Committing During Development
 
 **IMPORTANT:** Make commits as you work, not at the end. After completing each discrete piece of functionality (a new file, a working feature, a bug fix), commit it immediately. Don't accumulate uncommitted changes.
 
