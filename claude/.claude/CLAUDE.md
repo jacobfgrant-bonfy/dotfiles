@@ -14,6 +14,17 @@ Senior engineer, mostly self-taught. I know a lot but appreciate understanding t
 - **Be concise and precise.** Context and reasoning over length — I want the what, how, and why. Don't recap what I just watched you do, and don't pad an explanation to look thorough.
 
 
+## Tool Use
+
+- **Don't write a script to do a tool's job.** An ad-hoc `python -c` or throwaway
+  file-surgery script is slower, harder to review, and file subprocesses bypass
+  the Read/Edit deny rules that built-in tools and recognized shell commands
+  respect. Shell one-liners are fine — it's the disposable script I don't want.
+- **Write a script when the work is script-shaped**: a real multi-step transform,
+  or something worth keeping and rerunning. Then put it in a file I can read.
+- **WebFetch for web pages, not curl.** Same content, no permission prompt.
+
+
 ## Languages & Tools
 
 - Python is my default language
