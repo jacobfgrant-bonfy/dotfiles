@@ -49,7 +49,7 @@ creds() {
             export NEW_RELIC_API_KEY=$(security find-generic-password -s "newrelic-api-key" -w)
             ;;
         ""|--list)
-            echo "Available: cloudflare, github, newrelic"
+            echo "Available: atlassian, cloudflare, github, newrelic"
             ;;
         *)
             echo "Unknown credential set: $1"
