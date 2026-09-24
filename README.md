@@ -16,6 +16,9 @@
   - Configures PATH variable
   - General aliases
   - Python aliases/functions
+  - `creds` function for loading credentials from the macOS Keychain
+
+- `.agent_auth.sh` – `agent-auth` function that loads read-only credentials for coding agents
 
 
 ### git/

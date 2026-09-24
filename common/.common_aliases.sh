@@ -31,6 +31,8 @@ fi
 
 # Credentials #
 
+[ -f ~/.agent_auth.sh ] && . ~/.agent_auth.sh
+
 creds() {
     case "$1" in
         atlassian)
