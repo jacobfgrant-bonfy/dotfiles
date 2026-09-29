@@ -7,13 +7,15 @@
 # claude/.claude/settings.json, and a PreToolUse hook blocks Bash commands
 # that write to it.
 
-_keychain_export() {
-    local value
-    value=$(security find-generic-password -s "$2" -w) || return 1
-    export "$1=$value"
-}
-
 agent-auth() {
+    # Defined inside agent-auth because Claude Code's shell snapshot drops
+    # top-level functions whose names start with an underscore.
+    _keychain_export() {
+        local value
+        value=$(security find-generic-password -s "$2" -w) || return 1
+        export "$1=$value"
+    }
+
     case "$1" in
         confluence)
             export ATLASSIAN_EMAIL="jacob.grant@bonfy.ai"
