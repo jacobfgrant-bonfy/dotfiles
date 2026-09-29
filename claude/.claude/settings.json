@@ -94,7 +94,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.command' | grep -qiE 'creds|agent_auth\\.sh|security (find|add|delete)-generic-password' && echo '{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"deny\",\"permissionDecisionReason\":\"Blocked: credential/keychain access is not permitted\"}}' || true",
+            "command": "~/.claude/hooks/block-credential-access.sh",
             "statusMessage": "Checking for credential access..."
           }
         ]
