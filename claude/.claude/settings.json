@@ -13,6 +13,7 @@
       "WebFetch",
       "WebSearch",
       "Bash(agent-auth)",
+      "Bash(agent-auth *)",
       "Bash(brew info *)",
       "Bash(brew list *)",
       "Bash(git add *)",
