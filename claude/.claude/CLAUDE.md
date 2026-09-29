@@ -24,6 +24,16 @@ Senior engineer, mostly self-taught. I know a lot but appreciate understanding t
   or something worth keeping and rerunning. Then put it in a file I can read.
 - **WebFetch for web pages, not curl.** Same content, no permission prompt.
 
+### Credentials
+
+- **`agent-auth <set> && <command>`** loads read-only credentials for
+  one command. Run `agent-auth` alone to list the sets. It has to share a
+  command with what uses it: env vars don't persist between Bash calls.
+- **The default `GH_TOKEN` is deliberately narrow.** If `gh` gets a
+  permission error or a 404 on a Bonfy repo, retry with the matching
+  `github-*` set before deciding the repo is missing.
+- **Don't use `creds` or `security`.** Those are mine. A hook blocks them.
+
 
 ## Languages & Tools
 
