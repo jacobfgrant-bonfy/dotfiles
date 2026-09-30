@@ -34,6 +34,13 @@ Senior engineer, mostly self-taught. I know a lot but appreciate understanding t
   APIs or `gh`. When I say to look something up in one of them, that's
   what I mean. Don't use the Atlassian MCP connector or ask me to
   authenticate it: it's read-write, and agent-auth exists to avoid that.
+- **AWS defaults to the `aws-*` agent-auth sets**: read-only SSO
+  profiles, one per account (`aws-cicd`, `aws-dev01`, `aws-prod01`).
+  Use the account the task is about; touch prod only when it is.
+  Use my own profiles (e.g. `AWS_PROFILE=cicd`) only when I say to
+  elevate or the task needs writes; ask first rather than reaching for
+  one after an access denied. A hook prompts me on every command that
+  names a non-agent profile.
 - **The default `GH_TOKEN` is deliberately narrow.** If `gh` gets a
   permission error or a 404 on a Bonfy repo, retry with the matching
   `github-*` set before deciding the repo is missing.
