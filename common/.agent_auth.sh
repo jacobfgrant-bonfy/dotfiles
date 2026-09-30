@@ -16,13 +16,20 @@ agent-auth() {
         export "$1=$value"
     }
 
+    # Scoped Atlassian tokens are rejected by bonfy.atlassian.net and only
+    # work through the api.atlassian.com gateway, addressed by cloud ID.
+    local atlassian_gateway="https://api.atlassian.com/ex"
+    local atlassian_cloud_id="8bbc1007-9d5d-4d8a-b4a3-59ae40bff7c7"
+
     case "$1" in
         confluence)
             export ATLASSIAN_EMAIL="jacob.grant@bonfy.ai"
+            export CONFLUENCE_API="$atlassian_gateway/confluence/$atlassian_cloud_id"
             _keychain_export ATLASSIAN_API_KEY "atlassian-api-key-ro-confluence"
             ;;
         jira)
             export ATLASSIAN_EMAIL="jacob.grant@bonfy.ai"
+            export JIRA_API="$atlassian_gateway/jira/$atlassian_cloud_id"
             _keychain_export ATLASSIAN_API_KEY "atlassian-api-key-ro-jira"
             ;;
         github-bonfy-ai)
@@ -38,6 +45,11 @@ agent-auth() {
             echo "  jira                 Jira API (read-only)"
             echo "  github-bonfy-ai      gh, Bonfy-AI org (read-only)"
             echo "  github-bonfy-devops  gh, Bonfy-DevOps org (read-only)"
+            echo
+            echo "Atlassian sets: curl -u \"\$ATLASSIAN_EMAIL:\$ATLASSIAN_API_KEY\" with"
+            echo "\$JIRA_API or \$CONFLUENCE_API as the base, then the path from"
+            echo "Atlassian's docs (\$JIRA_API/rest/api/3/..., \$CONFLUENCE_API/wiki/api/v2/...)."
+            echo "The bonfy.atlassian.net site URL rejects these tokens."
             return 1
             ;;
     esac
