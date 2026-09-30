@@ -18,7 +18,7 @@
   - Permission allow/deny rules
   - Registers the credential-blocking hook
 
-- `.claude/hooks/block-credential-access.sh` – PreToolUse hook that blocks agent Bash commands that use `security`, call `creds`, or write to `.agent_auth.sh`
+- `.claude/hooks/block-credential-access.sh` – PreToolUse hook that blocks agent Bash commands that use `security`, call `creds`, or write to `.agent_auth.sh`, and prompts before AWS commands that name a profile other than the read-only `agent-*` ones
 
 
 ### common/
@@ -29,7 +29,7 @@
   - Python aliases/functions
   - `creds` function for loading credentials from the macOS Keychain
 
-- `.agent_auth.sh` – `agent-auth <set>` function that loads one set of read-only credentials for coding agents
+- `.agent_auth.sh` – `agent-auth <set>` function that loads one set of read-only credentials for coding agents (keychain tokens, or a read-only AWS SSO profile)
 
 
 ### git/
