@@ -27,8 +27,13 @@ Senior engineer, mostly self-taught. I know a lot but appreciate understanding t
 ### Credentials
 
 - **`agent-auth <set> && <command>`** loads read-only credentials for
-  one command. Run `agent-auth` alone to list the sets. It has to share a
-  command with what uses it: env vars don't persist between Bash calls.
+  one command. Run `agent-auth` alone to list the sets and how to call
+  each API. It has to share a command with what uses it: env vars don't
+  persist between Bash calls.
+- **Jira, Confluence, and GitHub go through agent-auth**, via their REST
+  APIs or `gh`. When I say to look something up in one of them, that's
+  what I mean. Don't use the Atlassian MCP connector or ask me to
+  authenticate it: it's read-write, and agent-auth exists to avoid that.
 - **The default `GH_TOKEN` is deliberately narrow.** If `gh` gets a
   permission error or a 404 on a Bonfy repo, retry with the matching
   `github-*` set before deciding the repo is missing.
