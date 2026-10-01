@@ -35,7 +35,8 @@ Senior engineer, mostly self-taught. I know a lot but appreciate understanding t
   what I mean. Don't use the Atlassian MCP connector or ask me to
   authenticate it: it's read-write, and agent-auth exists to avoid that.
 - **AWS defaults to the `aws-*` agent-auth sets**: read-only SSO
-  profiles, one per account (`aws-cicd`, `aws-dev01`, `aws-prod01`).
+  profiles, one per account (`aws-cicd`, `aws-dev01`, `aws-prod01`,
+  `aws-sand01`).
   Use the account the task is about; touch prod only when it is.
   Use my own profiles (e.g. `AWS_PROFILE=cicd`) only when I say to
   elevate or the task needs writes; ask first rather than reaching for

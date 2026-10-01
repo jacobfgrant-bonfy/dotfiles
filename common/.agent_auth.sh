@@ -44,6 +44,9 @@ agent-auth() {
         aws-prod01)
             _aws_profile_export agent-prod01
             ;;
+        aws-sand01)
+            _aws_profile_export agent-sand01
+            ;;
         confluence)
             export ATLASSIAN_EMAIL="jacob.grant@bonfy.ai"
             export CONFLUENCE_API="$atlassian_gateway/confluence/$atlassian_cloud_id"
@@ -66,6 +69,7 @@ agent-auth() {
             echo "  aws-cicd             AWS CLI/SDKs, CICD account (read-only)"
             echo "  aws-dev01            AWS CLI/SDKs, dev01 account (read-only)"
             echo "  aws-prod01           AWS CLI/SDKs, prod01 account (read-only)"
+            echo "  aws-sand01           AWS CLI/SDKs, sand01 account (read-only)"
             echo "  confluence           Confluence API (read-only)"
             echo "  jira                 Jira API (read-only)"
             echo "  github-bonfy-ai      gh, Bonfy-AI org (read-only)"
