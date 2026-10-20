@@ -33,6 +33,7 @@ agent-auth() {
     # work through the api.atlassian.com gateway, addressed by cloud ID.
     local atlassian_gateway="https://api.atlassian.com/ex"
     local atlassian_cloud_id="8bbc1007-9d5d-4d8a-b4a3-59ae40bff7c7"
+    local kiteworks_atlassian_cloud_id="cebc598e-8c35-4780-abf5-1cb3efb6f390"
 
     case "$1" in
         aws-cicd)
@@ -57,6 +58,11 @@ agent-auth() {
             export JIRA_API="$atlassian_gateway/jira/$atlassian_cloud_id"
             _keychain_export ATLASSIAN_API_KEY "atlassian-api-key-ro-jira"
             ;;
+        jira-kw)
+            export ATLASSIAN_EMAIL="jacob.grant@kiteworks.com"
+            export JIRA_API="$atlassian_gateway/jira/$kiteworks_atlassian_cloud_id"
+            _keychain_export ATLASSIAN_API_KEY "kiteworks-atlassian-api-key-ro-jira"
+            ;;
         github-bonfy-ai)
             _keychain_export GH_TOKEN "github-ro-bonfy-ai"
             ;;
@@ -72,6 +78,7 @@ agent-auth() {
             echo "  aws-sand01           AWS CLI/SDKs, sand01 account (read-only)"
             echo "  confluence           Confluence API (read-only)"
             echo "  jira                 Jira API (read-only)"
+            echo "  jira-kw              Kiteworks Jira API (read-only)"
             echo "  github-bonfy-ai      gh, Bonfy-AI org (read-only)"
             echo "  github-bonfy-devops  gh, Bonfy-DevOps org (read-only)"
             echo
@@ -81,7 +88,7 @@ agent-auth() {
             echo "Atlassian sets: curl -u \"\$ATLASSIAN_EMAIL:\$ATLASSIAN_API_KEY\" with"
             echo "\$JIRA_API or \$CONFLUENCE_API as the base, then the path from"
             echo "Atlassian's docs (\$JIRA_API/rest/api/3/..., \$CONFLUENCE_API/wiki/api/v2/...)."
-            echo "The bonfy.atlassian.net site URL rejects these tokens."
+            echo "The Atlassian site URLs (*.atlassian.net) rejects these tokens."
             return 1
             ;;
     esac
