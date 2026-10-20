@@ -34,6 +34,9 @@ Senior engineer, mostly self-taught. I know a lot but appreciate understanding t
   APIs or `gh`. When I say to look something up in one of them, that's
   what I mean. Don't use the Atlassian MCP connector or ask me to
   authenticate it: it's read-write, and agent-auth exists to avoid that.
+- **Jira defaults to Bonfy's instance (`jira`).** Use `jira-kw` only
+  when I say Kiteworks or name one of its tickets (e.g. PANAMA-*). If a
+  ticket 404s in ours, try `jira-kw` before deciding it's missing.
 - **AWS defaults to the `aws-*` agent-auth sets**: read-only SSO
   profiles, one per account (`aws-cicd`, `aws-dev01`, `aws-prod01`,
   `aws-sand01`).
