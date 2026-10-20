@@ -85,6 +85,7 @@ For non-trivial code:
 - Suggest a testing approach alongside implementation
 - Write tests as we go, not as an afterthought
 - Keep tests readable—they're documentation too
+- Tests should provide real value. Don't add tests for the sake of writing tests.
 
 
 ## Git
